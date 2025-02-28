@@ -1,0 +1,10 @@
+streamlit
+python-dotenv
+youtube_transcript_api
+langchain
+langchain-groq
+langchain-community
+langgraph
+langgraph-cli[inmem]
+google-auth
+google-auth-oauthlib
