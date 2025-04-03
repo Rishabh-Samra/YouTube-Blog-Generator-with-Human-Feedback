@@ -47,6 +47,7 @@ def load_bloggenerator_app():
             graph_builder=GraphBuilder(model)
             try:
                 graph = graph_builder.build_graph()
+                print("graph: ", graph)
                 DisplayResultStreamlit(graph,user_message).display_result_on_ui()
             except Exception as e:
                 st.error(f"Error: Graph setup failed - {e}")
