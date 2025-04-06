@@ -10,6 +10,7 @@ import requests
 import json
 import os
 from urllib.parse import urlparse, parse_qs
+from langchain_groq import ChatGroq
 
 class YouTubeBlogState(TypedDict):
     video_url: str
@@ -64,6 +65,7 @@ def generate_blog(state: YouTubeBlogState) -> YouTubeBlogState:
     
     The blog should be engaging, informative, and well-structured with an introduction, key takeaways, and a conclusion. 
     Also if any code is explained, include in the final blog the code snippet and explain briefly the code as well.
+    The output response should be in a proper markdown format.
     """
     
     blog_post = llm.invoke(prompt)
@@ -115,7 +117,11 @@ def should_continue(state: YouTubeBlogState):
     # Otherwise 
     return "revise_blog"
 
-llm = Ollama(model="llama3.2:1b")
+# llm = Ollama(model="llama3.2:1b")
+groq_api_key = "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"
+selected_groq_model = "llama3-8b-8192"
+llm = ChatGroq(api_key =groq_api_key, model=selected_groq_model)
+
 workflow = StateGraph(YouTubeBlogState)
 
 # Define nodes
