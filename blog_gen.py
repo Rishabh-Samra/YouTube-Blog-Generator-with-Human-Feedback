@@ -11,6 +11,8 @@ import json
 import os
 from urllib.parse import urlparse, parse_qs
 from langchain_groq import ChatGroq
+from dotenv import load_dotenv
+load_dotenv()
 
 class YouTubeBlogState(TypedDict):
     video_url: str
@@ -118,7 +120,7 @@ def should_continue(state: YouTubeBlogState):
     return "revise_blog"
 
 # llm = Ollama(model="llama3.2:1b")
-groq_api_key = "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"
+groq_api_key = os.getenv("GROQ_API_KEY")
 selected_groq_model = "llama3-8b-8192"
 llm = ChatGroq(api_key =groq_api_key, model=selected_groq_model)
 
